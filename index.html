@@ -1,18 +1,32 @@
-<button id="upload_widget" class="cloudinary-button">Upload files</button>
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/@uploadcare/file-uploader@1/web/uc-file-uploader-regular.min.css"
+>
+<script type="module">
+  import * as UC from 'https://cdn.jsdelivr.net/npm/@uploadcare/file-uploader@1/web/uc-file-uploader-regular.min.js';
+  UC.defineComponents(UC);
 
-<script src="https://upload-widget.cloudinary.com/latest/global/all.js" type="text/javascript"></script>  
+  const ctxProvider = document.querySelector("uc-upload-ctx-provider");
 
-<script type="text/javascript">  
-var myWidget = cloudinary.createUploadWidget({
-  cloudName: 'razuro', 
-  uploadPreset: 'transaction'}, (error, result) => { 
-    if (!error && result && result.event === "success") { 
-      console.log('Done! Here is the image info: ', result.info); 
-    }
-  }
-)
-
-document.getElementById("upload_widget").addEventListener("click", function(){
-    myWidget.open();
-  }, false);
+  ctxProvider.addEventListener("common-upload-success", (e) => {
+    console.log(
+      "Uploaded files URL list",
+      e.detail.successEntries.map((entry) => entry.cdnUrl)
+    );
+  });
 </script>
+
+<uc-config
+  ctx-name="my-uploader"
+  use-cloud-image-editor="false"
+  source-list="local"
+  cdn-cname="https://3uf3618cjv.ucarecd.net/"
+  pubkey="b12dfd2019d2f336698a"
+></uc-config>
+
+<uc-file-uploader-regular
+  ctx-name="my-uploader"
+  class="uc-light"
+></uc-file-uploader-regular>
+
+<uc-upload-ctx-provider ctx-name="my-uploader"></uc-upload-ctx-provider>
