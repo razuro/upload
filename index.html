@@ -1,32 +1,28 @@
-<link
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Uploadcare JS Minimal Example</title>
+    <meta
+      name="description"
+      content="Uploading files with HTML and JS using Uploadcare"
+    />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <script type="module" src="./minimal.js"></script>
+    <link
   rel="stylesheet"
   href="https://cdn.jsdelivr.net/npm/@uploadcare/file-uploader@1/web/uc-file-uploader-regular.min.css"
 >
-<script type="module">
-  import * as UC from 'https://cdn.jsdelivr.net/npm/@uploadcare/file-uploader@1/web/uc-file-uploader-regular.min.js';
-  UC.defineComponents(UC);
+  </head>
+  <body>
+    <uc-config ctx-name="my-uploader" pubkey="a6ca334c3520777c0045"></uc-config>
+    <uc-file-uploader-minimal ctx-name="my-uploader" class="uc-light"></uc-file-uploader-minimal>
+    <uc-upload-ctx-provider
+      ctx-name="my-uploader"
+      id="my-uploader-provider"
+    ></uc-upload-ctx-provider>
 
-  const ctxProvider = document.querySelector("uc-upload-ctx-provider");
-
-  ctxProvider.addEventListener("common-upload-success", (e) => {
-    console.log(
-      "Uploaded files URL list",
-      e.detail.successEntries.map((entry) => entry.cdnUrl)
-    );
-  });
-</script>
-
-<uc-config
-  ctx-name="my-uploader"
-  use-cloud-image-editor="false"
-  source-list="local"
-  cdn-cname="https://3uf3618cjv.ucarecd.net/"
-  pubkey="b12dfd2019d2f336698a"
-></uc-config>
-
-<uc-file-uploader-regular
-  ctx-name="my-uploader"
-  class="uc-light"
-></uc-file-uploader-regular>
-
-<uc-upload-ctx-provider ctx-name="my-uploader"></uc-upload-ctx-provider>
+    <div class="previews" id="previews"></div>
+  </body>
+</html>
