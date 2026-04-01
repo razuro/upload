@@ -1,6 +1,6 @@
-import * as UC from "@uploadcare/file-uploader/web/uc-file-uploader-minimal.min.js";
-import "@uploadcare/file-uploader/web/uc-file-uploader-minimal.min.css";
-import "./styles.css";
+import * as UC from 'https://cdn.jsdelivr.net/npm/@uploadcare/file-uploader@1/web/uc-file-uploader-minimal.min.js';
+import "https://cdn.jsdelivr.net/npm/@uploadcare/file-uploader@1/web/uc-file-uploader-minimal.min.css";
+
 
 UC.defineComponents(UC);
 
